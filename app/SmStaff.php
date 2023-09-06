@@ -20,7 +20,7 @@ class SmStaff extends Model
 
     public function roles()
     {
-        return $this->belongsTo('Modules\RolePermission\Entities\InfixRole', 'role_id', 'id');
+        return $this->belongsTo('Modules\RolePermission\Entities\CpmRole', 'role_id', 'id');
     }
 
     public function departments()
@@ -87,7 +87,7 @@ class SmStaff extends Model
 
     public function previousRole()
     {
-        return $this->belongsTo('Modules\RolePermission\Entities\InfixRole', 'previous_role_id', 'id')->withDefault();
+        return $this->belongsTo('Modules\RolePermission\Entities\CpmRole', 'previous_role_id', 'id')->withDefault();
     }
     
     public function scopeWhereRole($query, $role_id)

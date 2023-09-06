@@ -32,7 +32,7 @@ use App\SmAssignSubject;
 use App\SmExamAttendance;
 use App\SmPaymentMethhod;
 use App\SmGeneralSettings;
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use App\Models\FeesInvoice;
 use App\SmFeesCarryForward;
 use Illuminate\Support\Str;
@@ -449,7 +449,7 @@ if (!function_exists('moduleStatusCheck')) {
 
             if (empty($all_module)) {
                 $all_module = [];
-                $modules = InfixModuleManager::select('name')->get();
+                $modules = CpmModuleManager::select('name')->get();
                 foreach ($modules as $m) {
                     $all_module[] = $m->name;
                 }
@@ -467,7 +467,7 @@ if (!function_exists('moduleStatusCheck')) {
             }
 
             $is_verify = Cache::rememberForever('module_' . $module, function () use ($module) {
-                return InfixModuleManager::where('name', $module)->first();
+                return CpmModuleManager::where('name', $module)->first();
             });
 
             if (!$is_verify || !$is_verify->purchase_code) {
@@ -2038,7 +2038,7 @@ if (!function_exists('menuPosition')) {
         }
 
         if ($is_have) {
-            $sidebar = app('sidebar_news')->where('active_status', 1)->where('infix_module_id', $id)->first();
+            $sidebar = app('sidebar_news')->where('active_status', 1)->where('cpm_module_id', $id)->first();
 
             return $sidebar ? $sidebar->parent_position_no : $id;
         } else {
@@ -2052,7 +2052,7 @@ if (!function_exists('menuStatus')) {
     {
         $is_have = count(app('sidebar_news')) > 0;
         if (($is_have)) {
-            $is_have_id = app('sidebar_news')->where('infix_module_id', $id)->first();
+            $is_have_id = app('sidebar_news')->where('cpm_module_id', $id)->first();
             if ($is_have_id) {
                 return $is_have_id->active_status == 1 ? true : false;
             } else {

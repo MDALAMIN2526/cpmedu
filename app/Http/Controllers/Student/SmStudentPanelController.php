@@ -70,9 +70,9 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Models\SmStudentRegistrationField;
 use Illuminate\Support\Facades\Notification;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Modules\Wallet\Entities\WalletTransaction;
-use Modules\OnlineExam\Entities\InfixOnlineExam;
+use Modules\OnlineExam\Entities\CpmOnlineExam;
 use Modules\University\Entities\UnAssignSubject;
 use Modules\University\Entities\UnSemesterLabel;
 use Modules\University\Entities\UniversitySetting;
@@ -862,7 +862,7 @@ class SmStudentPanelController extends Controller
             date_default_timezone_set(@generalSetting()->timeZone->time_zone);
             $now = date('Y-m-d');
             if (moduleStatusCheck('OnlineExam') == true) {
-                $online_exams = InfixOnlineExam::where('active_status', 1)
+                $online_exams = CpmOnlineExam::where('active_status', 1)
                                 ->where('status', 1)
                                 ->whereIn('class_id', $class_ids)
                                 ->whereIn('section_id', $section_ids)
@@ -1938,7 +1938,7 @@ class SmStudentPanelController extends Controller
         try {
             $apply_leaves = SmLeaveRequest::with('leaveDefine', 'student')->where([['active_status', 1], ['approve_status', 'P']])->where('academic_id', getAcademicId())->where('school_id',Auth::user()->school_id)->get();
             $leave_types = SmLeaveType::where('active_status', 1)->where('academic_id', getAcademicId())->where('school_id',Auth::user()->school_id)->get();
-            $roles = InfixRole::where('id', 2)->where(function ($q) {
+            $roles = CpmRole::where('id', 2)->where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
             $pendingRequest = SmLeaveRequest::where('sm_leave_requests.active_status', 1)

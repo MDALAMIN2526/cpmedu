@@ -30,7 +30,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\CommunicateNotification;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use App\Http\Requests\Admin\Communicate\SendEmailSmsRequest;
 use App\Models\StudentRecord;
 use Modules\University\Http\Controllers\CommunicateController;
@@ -49,7 +49,7 @@ class SmCommunicateController extends Controller
     public function sendEmailSmsView(Request $request)
     {
         try {
-            $roles = InfixRole::select('*')->where('id', '!=', 1)->where(function ($q) {
+            $roles = CpmRole::select('*')->where('id', '!=', 1)->where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
             $classes = SmClass::get();

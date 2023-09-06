@@ -6,11 +6,11 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Modules\RolePermission\Entities\Permission;
-use Modules\RolePermission\Entities\InfixModuleInfo;
-use Modules\RolePermission\Entities\InfixPermissionAssign;
-use Modules\RolePermission\Entities\InfixModuleStudentParentInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
+use Modules\RolePermission\Entities\CpmPermissionAssign;
+use Modules\RolePermission\Entities\CpmModuleStudentParentInfo;
 
 class UserRolePermission
 {

@@ -11,16 +11,16 @@ use Illuminate\Database\Eloquent\Model;
 use App\Scopes\StatusAcademicSchoolScope;
 use Modules\University\Entities\UnSubject;
 use Modules\Fees\Entities\FmFeesTransaction;
-use Modules\OnlineExam\Entities\InfixPdfExam;
-use Modules\OnlineExam\Entities\InfixOnlineExam;
-use Modules\OnlineExam\Entities\InfixWrittenExam;
+use Modules\OnlineExam\Entities\CpmPdfExam;
+use Modules\OnlineExam\Entities\CpmOnlineExam;
+use Modules\OnlineExam\Entities\CpmWrittenExam;
 use Modules\University\Entities\UnSubjectComplete;
-use Modules\FeesCollection\Entities\InfixFeesMaster;
-use Modules\FeesCollection\Entities\InfixFeesPayment;
+use Modules\FeesCollection\Entities\CpmFeesMaster;
+use Modules\FeesCollection\Entities\CpmFeesPayment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\FeesCollection\Entities\InfixAssignDiscount;
-use Modules\OnlineExam\Entities\InfixStudentTakeOnlineExam;
-use Modules\OnlineExam\Entities\InfixStudentTakeWrittenExam;
+use Modules\FeesCollection\Entities\CpmAssignDiscount;
+use Modules\OnlineExam\Entities\CpmStudentTakeOnlineExam;
+use Modules\OnlineExam\Entities\CpmStudentTakeWrittenExam;
 
 class SmStudent extends Model
 {
@@ -200,12 +200,12 @@ class SmStudent extends Model
 
     public function assignDiscount()
     {
-        return $this->hasMany(InfixAssignDiscount::class, 'student_id');
+        return $this->hasMany(CpmAssignDiscount::class, 'student_id');
     }
 
     public function feesMasters()
     {
-        return $this->hasMany(InfixFeesMaster::class, 'class_id', 'class_id');
+        return $this->hasMany(CpmFeesMaster::class, 'class_id', 'class_id');
     }
 
     public function markStores()
@@ -223,7 +223,7 @@ class SmStudent extends Model
     {
 
         if (moduleStatusCheck('OnlineExam') == true) {
-            return $this->hasMany(InfixOnlineExam::class, 'class_id', 'class_id')->where('section_id', $this->section_id)
+            return $this->hasMany(CpmOnlineExam::class, 'class_id', 'class_id')->where('section_id', $this->section_id)
                 ->where('active_status', 1)->where('status', 1)->where('school_id', Auth::user()->school_id);
         } else {
             return $this->hasMany(SmOnlineExam::class, 'class_id', 'class_id')->where('section_id', $this->section_id)
@@ -233,7 +233,7 @@ class SmStudent extends Model
     }
     public function studentPdfExams()
     {
-        return $this->hasMany(InfixPdfExam::class, 'class_id', 'class_id')->where('section_id', $this->section_id)
+        return $this->hasMany(CpmPdfExam::class, 'class_id', 'class_id')->where('section_id', $this->section_id)
             ->where('active_status', 1)->where('status', 1)->where('school_id', Auth::user()->school_id);
     }
 
@@ -273,7 +273,7 @@ class SmStudent extends Model
     public function studentOnlineExam()
     {
         if (moduleStatusCheck('OnlineExam') == true) {
-            return $this->hasMany(InfixStudentTakeOnlineExam::class, 'student_id');
+            return $this->hasMany(CpmStudentTakeOnlineExam::class, 'student_id');
         } else {
             return $this->hasMany(SmStudentTakeOnlineExam::class, 'student_id');
         }
@@ -281,7 +281,7 @@ class SmStudent extends Model
     public function studentWrittenExams()
     {
         if (moduleStatusCheck('OnlineExam') == true) {
-            return $this->hasMany(InfixStudentTakeWrittenExam::class, 'student_id');
+            return $this->hasMany(CpmStudentTakeWrittenExam::class, 'student_id');
         } 
     }
 
@@ -495,7 +495,7 @@ class SmStudent extends Model
 
     public function feesPayments()
     {
-        return $this->hasMany(InfixFeesPayment::class, 'student_id');
+        return $this->hasMany(CpmFeesPayment::class, 'student_id');
     }
 
     public function getClassesAttribute()

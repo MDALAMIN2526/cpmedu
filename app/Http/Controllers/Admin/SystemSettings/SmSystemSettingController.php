@@ -64,8 +64,8 @@ use Modules\MenuManage\Entities\SidebarNew;
 use Modules\RolePermission\Entities\Permission;
 use Modules\University\Entities\UnAcademicYear;
 use App\Http\Requests\PaymentGatewayFormRequest;
-use Modules\RolePermission\Entities\InfixModuleInfo;
-use Modules\RolePermission\Entities\InfixModuleStudentParentInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleStudentParentInfo;
 use App\Http\Requests\Admin\GeneralSettings\SmEmailSettingsRequest;
 use App\Http\Requests\Admin\GeneralSettings\SmGeneralSettingsRequest;
 
@@ -145,7 +145,7 @@ class SmSystemSettingController extends Controller
         try {
             $user = User::where('id', $request->id)->first();
             if ($user->notificationToken != '') {
-                //echo 'Infix Edu';
+                //echo 'Cpmedu Edu';
                 define('API_ACCESS_KEY', 'AAAAFyQhhks:APA91bGJqDLCpuPgjodspo7Wvp1S4yl3jYwzzSxet_sYQH9Q6t13CtdB_EiwD6xlVhNBa6RcHQbBKCHJ2vE452bMAbmdABsdPriJy_Pr9YvaM90yEeOCQ6VF7JEQ501Prhnu_2bGCPNp');
                 //   $registrationIds = ;
                 #prep the bundle
@@ -2303,8 +2303,8 @@ class SmSystemSettingController extends Controller
     {
 
         try {
-            if (!Schema::hasTable('infix_module_managers')) {
-                Artisan::call('migrate --path=/database/migrations/2020_06_10_193309_create_infix_module_managers_table.php');
+            if (!Schema::hasTable('cpm_module_managers')) {
+                Artisan::call('migrate --path=/database/migrations/2020_06_10_193309_create_cpm_module_managers_table.php');
             }
 
             Artisan::call('cache:clear');

@@ -311,7 +311,7 @@ class SmGeneralSettings extends Model
                    
 
                     if ($modulestatus == FALSE) {
-                        $is_verify = InfixModuleManager::where('name', $name)->first();
+                        $is_verify = CpmModuleManager::where('name', $name)->first();
                        
                         if (!empty($is_verify->purchase_code)) {
                             return TRUE;

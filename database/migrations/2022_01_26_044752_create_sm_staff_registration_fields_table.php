@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\SmStaffRegistrationField;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Modules\RolePermission\Entities\InfixModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
 
 class CreateSmStaffRegistrationFieldsTable extends Migration
 {

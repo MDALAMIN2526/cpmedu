@@ -117,8 +117,8 @@ class SmCourseListController extends Controller
         try {
             \Modules\Lms\Entities\Course::destroy($id);
             if (moduleStatusCheck('OnlineExam')) {
-                \Modules\OnlineExam\Entities\InfixOnlineExam::where('course_id', $id)->delete();
-                \Modules\OnlineExam\Entities\InfixQuestionBank::where('course_id', $id)->delete();
+                \Modules\OnlineExam\Entities\CpmOnlineExam::where('course_id', $id)->delete();
+                \Modules\OnlineExam\Entities\CpmQuestionBank::where('course_id', $id)->delete();
             }
             Toastr::success('Operation successful', 'Success');
             return redirect()->back();

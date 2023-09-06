@@ -391,7 +391,7 @@
     'Edit Fees' => 'Edit Fees Payment',
     'Delete Fees' => 'Delete Fees Payment',
 
-    'InfixBiometrics' => 'InfixBiometrics',
+    'CpmBiometrics' => 'CpmBiometrics',
     'Biometrics settings' => 'Biometrics settings',
     'Get Attendance' => 'Get Attendance',
     'Import Attendance' => 'Import Attendance',

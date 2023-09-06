@@ -15,7 +15,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Scopes\StatusAcademicSchoolScope;
 use Illuminate\Support\Facades\Validator;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Modules\University\Repositories\Interfaces\UnCommonRepositoryInterface;
 
 class SmLibraryMemberController extends Controller
@@ -35,7 +35,7 @@ class SmLibraryMemberController extends Controller
             ->orderby('id','ASC')
             ->get();
 
-            $roles = InfixRole::where(function ($q) {
+            $roles = CpmRole::where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
 

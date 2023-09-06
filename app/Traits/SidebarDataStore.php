@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use Illuminate\Support\Facades\Cache;
 use Modules\MenuManage\Entities\Sidebar;
 use Modules\RolePermission\Entities\Permission;
@@ -41,7 +41,7 @@ trait SidebarDataStore
             //  }
 
             if (count($oldSidebar) > 0) {
-                $oldPermissionIds = $oldSidebar->pluck('infix_module_id')->toArray();
+                $oldPermissionIds = $oldSidebar->pluck('cpm_module_id')->toArray();
                 $permissionIds = Permission::whereIn('old_id', $oldPermissionIds)->get();
 
                 foreach ($permissionInfos as $key => $sidebar) {
@@ -257,7 +257,7 @@ trait SidebarDataStore
     function allActivePaidModules()
     {
         $activeModules= [];
-        $modules = InfixModuleManager::whereNotNull('purchase_code')->where('is_default', false)->where('name', '!=', 'OnlineExam')->pluck('name')->toArray();
+        $modules = CpmModuleManager::whereNotNull('purchase_code')->where('is_default', false)->where('name', '!=', 'OnlineExam')->pluck('name')->toArray();
         foreach($modules as $module) {
             if(moduleStatusCheck($module)) {
                 $activeModules []= $module;

@@ -1,7 +1,7 @@
 <?php
 
 use App\SmSchool;
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use App\Models\DirectFeesSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -44,9 +44,9 @@ class CreateDirectFeesSettingsTable extends Migration
                 }
             }); 
         }
-        $check = InfixModuleManager::where('name', $module_name)->first();
+        $check = CpmModuleManager::where('name', $module_name)->first();
         if (!$check) {
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $module_name;
             $s->email = 'support@spondonit.com';
             $s->notes = "Manage Your University Using This Module";

@@ -6,7 +6,7 @@ use App\User;
 use Validator;
 use App\tableList;
 use App\ApiBaseMethod;
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -15,12 +15,12 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Modules\RolePermission\Entities\AssignPermission;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Modules\RolePermission\Entities\Permission;
-use Modules\RolePermission\Entities\InfixModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
 use Modules\RolePermission\Http\Requests\RoleRequest;
-use Modules\RolePermission\Entities\InfixPermissionAssign;
-use Modules\RolePermission\Entities\InfixModuleStudentParentInfo;
+use Modules\RolePermission\Entities\CpmPermissionAssign;
+use Modules\RolePermission\Entities\CpmModuleStudentParentInfo;
 
 class RolePermissionController extends Controller
 {
@@ -99,7 +99,7 @@ class RolePermissionController extends Controller
     {
         try {
 
-            $roles = InfixRole::where('is_saas',0)->when((generalSetting()->with_guardian !=1), function ($query) {
+            $roles = CpmRole::where('is_saas',0)->when((generalSetting()->with_guardian !=1), function ($query) {
                 $query->where('id', '!=', 3);
             })->where('active_status', '=', 1)
                 ->where(function ($q) {
@@ -126,7 +126,7 @@ class RolePermissionController extends Controller
         try {
             
            // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            $role = new InfixRole();
+            $role = new CpmRole();
             $role->name = $request->name;
             $role->type = 'User Defined';
             $role->school_id = Auth::user()->school_id;
@@ -144,8 +144,8 @@ class RolePermissionController extends Controller
     {
         try {
            // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            $role = InfixRole::find($id);
-            $roles = InfixRole::where('is_saas',0)->where('active_status', '=', 1)
+            $role = CpmRole::find($id);
+            $roles = CpmRole::where('is_saas',0)->where('active_status', '=', 1)
                 ->where(function ($q) {
                     $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
                 })
@@ -170,7 +170,7 @@ class RolePermissionController extends Controller
 
         try {
            // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            $role = InfixRole::find($request->id);
+            $role = CpmRole::find($request->id);
             $role->name = $request->name;
             $result = $role->save();
 
@@ -188,7 +188,7 @@ class RolePermissionController extends Controller
         try {
             $tables = \App\tableList::getTableList('role_id', $request->id);
             if ($tables == null) {
-                $delete_query = InfixRole::destroy($request->id);
+                $delete_query = CpmRole::destroy($request->id);
                 Toastr::success('Operation successful', 'Success');
                 return redirect()->back();
             } else {
@@ -208,7 +208,7 @@ class RolePermissionController extends Controller
         try {
           
            // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            $role = InfixRole::with('assignedPermission')->where('is_saas',0)->where('id',$id)->first();
+            $role = CpmRole::with('assignedPermission')->where('is_saas',0)->where('id',$id)->first();
             $already_assigned = $role->assignedPermission->pluck('permission_id')->toArray();            
            
          
@@ -297,6 +297,6 @@ class RolePermissionController extends Controller
     }
     private function getPermissionList()
     {
-        $activeModuleList = InfixModuleInfo::whereNull('parent_route')->where('active_status', 1)->get();
+        $activeModuleList = CpmModuleInfo::whereNull('parent_route')->where('active_status', 1)->get();
     }
 }

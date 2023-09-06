@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 use Modules\MenuManage\Entities\Sidebar;
 use Modules\MenuManage\Entities\MenuManage;
-use Modules\RolePermission\Entities\InfixModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
 
-class InfixPermissionAssign extends Model
+class CpmPermissionAssign extends Model
 {
     protected $casts = [
         'saas_schools' => 'array'
@@ -18,7 +18,7 @@ class InfixPermissionAssign extends Model
 
     public function routeName()
     {
-        return $this->belongsTo(InfixModuleInfo::class, 'module_id', 'id');
+        return $this->belongsTo(CpmModuleInfo::class, 'module_id', 'id');
     }
 
 }

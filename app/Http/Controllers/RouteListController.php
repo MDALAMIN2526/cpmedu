@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\RolePermission\Entities\InfixModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
 
 class RouteListController extends Controller
 {
@@ -11,18 +11,18 @@ class RouteListController extends Controller
     public function index()
     {
 
-        $zoom = InfixModuleInfo::where('name', 'like', '%' . 'zoom' . '%')->orWhere('route', 'like', '%' . 'zoom' . '%')->update(['module_name'=> 'Zoom']);
-        $saas = InfixModuleInfo::where('name', 'like', '%' . 'saas' . '%')->orWhere('route', 'like', '%' . 'saas' . '%')->update(['module_name'=> 'Saas']);
-        $bbb = InfixModuleInfo::where('name', 'like', '%' . 'bbb' . '%')
+        $zoom = CpmModuleInfo::where('name', 'like', '%' . 'zoom' . '%')->orWhere('route', 'like', '%' . 'zoom' . '%')->update(['module_name'=> 'Zoom']);
+        $saas = CpmModuleInfo::where('name', 'like', '%' . 'saas' . '%')->orWhere('route', 'like', '%' . 'saas' . '%')->update(['module_name'=> 'Saas']);
+        $bbb = CpmModuleInfo::where('name', 'like', '%' . 'bbb' . '%')
         ->orWhere('route', 'like', '%' . 'bbb' . '%')
         ->orWhere('route', 'like', '%' . 'bigbluebutton' . '%')
         ->update(['module_name'=> 'BBB']);
-        $jitsi = InfixModuleInfo::where('name', 'like', '%' . 'jitsi' . '%')->orWhere('route', 'like', '%' . 'jitsi' . '%')->update(['module_name'=> 'Jitsi']);
-        $parentregistration = InfixModuleInfo::where('name', 'like', '%' . 'parentregistration' . '%')->orWhere('route', 'like', '%' . 'parentregistration' . '%')->update(['module_name'=> 'ParentRegistration']);
+        $jitsi = CpmModuleInfo::where('name', 'like', '%' . 'jitsi' . '%')->orWhere('route', 'like', '%' . 'jitsi' . '%')->update(['module_name'=> 'Jitsi']);
+        $parentregistration = CpmModuleInfo::where('name', 'like', '%' . 'parentregistration' . '%')->orWhere('route', 'like', '%' . 'parentregistration' . '%')->update(['module_name'=> 'ParentRegistration']);
         
         $formatRouteList = $this->routeFormat();
         foreach($formatRouteList as $key => $list){
-           $va = InfixModuleInfo::updateOrCreate([
+           $va = CpmModuleInfo::updateOrCreate([
                'id'=>$key],
               ['name'=>$list['name'], 
                'route'=>$list['route'], 
@@ -34,12 +34,12 @@ class RouteListController extends Controller
     public function update()
     {
    //   return $this->adminSection();
-      $all = InfixModuleInfo::get();
-      $routes =  InfixModuleInfo::where('parent_id', 0)->get();
+      $all = CpmModuleInfo::get();
+      $routes =  CpmModuleInfo::where('parent_id', 0)->get();
       $modifiyList = [];
       foreach($all as $item)
       {
-         // $parent_route = InfixModuleInfo::where('parent_id', $item->id)->where('parent_id', '!=',0)->update(['parent_route'=>$item->route]);
+         // $parent_route = CpmModuleInfo::where('parent_id', $item->id)->where('parent_id', '!=',0)->update(['parent_route'=>$item->route]);
          // $modifiyList[]=[
          //    'id'=>$item->id,
          //    'type'=>$item->type,
@@ -59,7 +59,7 @@ class RouteListController extends Controller
       //           $item->update(['route'=>$name]);
       //   }
       
-         $routes =  InfixModuleInfo::get(['id','name', 'route', 'parent_route', 'type']);
+         $routes =  CpmModuleInfo::get(['id','name', 'route', 'parent_route', 'type']);
          $formatRoute = [];
          foreach($routes as $route){
             $formatRoute[$route->id]= [

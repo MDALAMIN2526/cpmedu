@@ -52,7 +52,7 @@ Route::group(['middleware' => []] ,function(){
     // update password
 
     Route::get('change-password', 'HomeController@updatePassowrd')->name('updatePassowrd');
-    Route::post('admin-change-password', 'HomeController@updatePassowrdStore')->name('updatePassowrdStore'); //InfixPro Version
+    Route::post('admin-change-password', 'HomeController@updatePassowrdStore')->name('updatePassowrdStore'); //CpmPro Version
 
     Route::get('download-uploaded-content/{id}/{student_id}', 'Student\SmStudentPanelController@downloadHomeWorkContent')->name('downloadHomeWorkContent');
 

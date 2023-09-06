@@ -55,7 +55,7 @@ class Kernel extends ConsoleKernel
 
         /**
          *  Example command of cron job
-         * /opt/cpanel/ea-php74/root/usr/bin/php /home/uxseqmbj/public_html/infix_5/artisan absent_notification:sms > /dev/null 2>&1
+         * /opt/cpanel/ea-php74/root/usr/bin/php /home/uxseqmbj/public_html/cpm_5/artisan absent_notification:sms > /dev/null 2>&1
          */
 //         $schedule->command('absent_notification:sms')->everyMinute();
 //         $schedule->command('absent_notification:sms')->dailyAt('13:00');

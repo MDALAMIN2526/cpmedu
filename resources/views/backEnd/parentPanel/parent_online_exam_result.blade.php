@@ -56,7 +56,7 @@
 
                                     <tbody>
                                         @php
-                                            $results = App\Models\StudentRecord::getInfixStudentTakeOnlineExamParent($record->student_id, $record->id);
+                                            $results = App\Models\StudentRecord::getCpmStudentTakeOnlineExamParent($record->student_id, $record->id);
                                         @endphp
                                         @foreach($results as $result_view)
                                         

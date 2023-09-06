@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Saas\Entities\SmPackagePlan;
-use Modules\RolePermission\Entities\InfixPermissionAssign;
+use Modules\RolePermission\Entities\CpmPermissionAssign;
 
 class SmFrontendController extends Controller
 {
@@ -318,7 +318,7 @@ class SmFrontendController extends Controller
     {
         try {
             $contact_messages = SmContactMessage::where('school_id', app('school')->id)->orderBy('id', 'desc')->get();
-            $module_links = InfixPermissionAssign::where('role_id', Auth::user()->role_id)->where('school_id', Auth::user()->school_id)->pluck('module_id')->toArray();
+            $module_links = CpmPermissionAssign::where('role_id', Auth::user()->role_id)->where('school_id', Auth::user()->school_id)->pluck('module_id')->toArray();
             return view('frontEnd.contact_message', compact('contact_messages', 'module_links'));
         } catch (\Exception $e) {
             Toastr::error('Operation Failed', 'Failed');

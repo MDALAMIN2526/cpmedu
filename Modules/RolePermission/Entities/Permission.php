@@ -2,10 +2,10 @@
 
 namespace Modules\RolePermission\Entities;
 
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Permission extends Model
@@ -17,7 +17,7 @@ class Permission extends Model
 
     public function roles()
     {
-        return $this->belongsToMany(InfixRole::class, 'assign_permissions', 'permission_id', 'role_id');
+        return $this->belongsToMany(CpmRole::class, 'assign_permissions', 'permission_id', 'role_id');
     }
 
     public function assign()
@@ -66,7 +66,7 @@ class Permission extends Model
     }
     public function scopeWhereNotInDeaActiveModulePermission($query)
     {        
-        $activeModuleList = InfixModuleManager::where('is_default', 0)
+        $activeModuleList = CpmModuleManager::where('is_default', 0)
         ->whereNull('purchase_code')->pluck('name')->toArray();
           
         $deActiveModules = [];            

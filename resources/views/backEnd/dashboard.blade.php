@@ -434,7 +434,7 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-lg-5 col-xl-4 mt-50-md md_infix_50">
+                <div class="col-lg-5 col-xl-4 mt-50-md md_cpm_50">
                     @if (userPermission('to-do-list'))
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-6">

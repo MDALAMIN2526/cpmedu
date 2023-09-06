@@ -690,9 +690,9 @@ return [
 
 "expaire_date" => "Fecha de caducidad",
 
-"infix_edu" => "Infix Edu",
+"cpm_edu" => "Cpmedu Edu",
 
-"infix_clasified" => "Infix clasificado",
+"cpm_clasified" => "Cpmedu clasificado",
 
 "purchase_list" => "Lista de compra",
 

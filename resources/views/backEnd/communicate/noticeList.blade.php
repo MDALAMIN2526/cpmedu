@@ -81,7 +81,7 @@
 
                                     <?php 
                                     $rolesData = explode(',', $value->inform_to);
-                                    $RoleName = \Modules\RolePermission\Entities\InfixRole::select('name')->whereIn('id', $rolesData)->get();
+                                    $RoleName = \Modules\RolePermission\Entities\CpmRole::select('name')->whereIn('id', $rolesData)->get();
                                     ?>
                                     @foreach ($RoleName as $name)
                                     <p class="mb-0">

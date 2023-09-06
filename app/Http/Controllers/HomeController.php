@@ -21,7 +21,7 @@ use App\SmNoticeBoard;
 use App\SmAcademicYear;
 use App\SmClassSection;
 use App\SmGeneralSettings;
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

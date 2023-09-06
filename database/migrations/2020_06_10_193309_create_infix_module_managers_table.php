@@ -1,13 +1,13 @@
 <?php
 
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 use Illuminate\Support\Facades\Log;
 
-class CreateInfixModuleManagersTable extends Migration
+class CreateCpmModuleManagersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateInfixModuleManagersTable extends Migration
      */
     public function up()
     {
-        Schema::create('infix_module_managers', function (Blueprint $table) {
+        Schema::create('cpm_module_managers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 200)->nullable();
             $table->string('email', 200)->nullable();
@@ -44,7 +44,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -67,7 +67,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->is_default = 1;
             $s->email = 'support@spondonit.com';
@@ -91,7 +91,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->is_default = 1;
             $s->email = 'support@spondonit.com';
@@ -114,7 +114,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -137,7 +137,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -160,7 +160,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -182,7 +182,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -197,21 +197,21 @@ class CreateInfixModuleManagersTable extends Migration
 
             // Zoom
             $name = 'Zoom';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Zoom module for live virtual class and meeting in this system at a time. Thanks for using.";
             $s->version = "1.0";
             $s->update_url = "https://spondonit.com/contact";
             $s->is_default = 0;
-            $s->addon_url = "https://codecanyon.net/item/infixedu-zoom-live-class/27623128?s_rank=12";
+            $s->addon_url = "https://codecanyon.net/item/cpmedu-zoom-live-class/27623128?s_rank=12";
             $s->installed_domain = url('/');
             $s->activated_date = date('Y-m-d');
             $s->save();
 
             // OnlineExam
             $name = 'OnlineExam';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = "This is OnlineExam module for take online exam Thanks for using.";
@@ -225,7 +225,7 @@ class CreateInfixModuleManagersTable extends Migration
 
             // ParentRegistration
             $name = 'ParentRegistration';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Parent Registration module for Registration. Thanks for using.";
@@ -241,21 +241,21 @@ class CreateInfixModuleManagersTable extends Migration
             $dataPath = 'Modules/RazorPay/RazorPay.json';
             $name = 'RazorPay';
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'RazorPay';
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Razor Pay module for Online payemnt. Thanks for using.";
             $s->version = "1.0";
             $s->update_url = "https://spondonit.com/contact";
             $s->is_default = 0;
-            $s->addon_url = "https://codecanyon.net/item/razorpay-payment-gateway-for-infixedu/27721206?s_rank=11";
+            $s->addon_url = "https://codecanyon.net/item/razorpay-payment-gateway-for-cpmedu/27721206?s_rank=11";
             $s->installed_domain = url('/');
             $s->activated_date = date('Y-m-d');
             $s->save();
 
             // BigBlueButton
             $name = 'BBB';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'BBB';
             $s->email = 'support@spondonit.com';
             $s->notes = "This is BigBlueButton module for live virtual class and meeting in this system at a time. Thanks for using.";
@@ -270,7 +270,7 @@ class CreateInfixModuleManagersTable extends Migration
             // Jitsi
            
             $name = 'Jitsi';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'Jitsi';
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Jitsi module for live virtual class and meeting in this system at a time. Thanks for using.";
@@ -285,7 +285,7 @@ class CreateInfixModuleManagersTable extends Migration
             // Saas
            
             $name = 'Saas';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'Saas';
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Saas module for manage multiple school or institutes.Every school managed by individual admin. Thanks for using.";
@@ -300,21 +300,21 @@ class CreateInfixModuleManagersTable extends Migration
 
             // BulkPrint
             $bulk_print = 'BulkPrint';
-            $bulk_print = new InfixModuleManager();
+            $bulk_print = new CpmModuleManager();
             $bulk_print->name = 'BulkPrint';
             $bulk_print->email = 'support@spondonit.com';
             $bulk_print->notes = "This is Bulkprint module for print invoice ,certificate and id card. Thanks for using.";
             $bulk_print->version = "1.0";
             $bulk_print->update_url = "https://spondonit.com/contact";
             $bulk_print->is_default = 1;
-            $bulk_print->addon_url = "https://codecanyon.net/item/infixedu-zoom-live-class/27623128?s_rank=12";
+            $bulk_print->addon_url = "https://codecanyon.net/item/cpmedu-zoom-live-class/27623128?s_rank=12";
             $bulk_print->installed_domain = url('/');
             $bulk_print->activated_date = date('Y-m-d');
             $bulk_print->save();
 
             // HimalayaSms
             $HimalayaSms = 'HimalayaSms';
-            $HimalayaSms = new InfixModuleManager();
+            $HimalayaSms = new CpmModuleManager();
             $HimalayaSms->name = "HimalayaSms";
             $HimalayaSms->email = 'support@spondonit.com';
             $HimalayaSms->notes = "This is sms gateway module for sending sms via api. Thanks for using.";
@@ -328,7 +328,7 @@ class CreateInfixModuleManagersTable extends Migration
 
             // XenditPayment
             $XenditPayment = 'XenditPayment';
-            $XenditPayment = new InfixModuleManager();
+            $XenditPayment = new CpmModuleManager();
             $XenditPayment->name = 'XenditPayment';
             $XenditPayment->email = 'support@spondonit.com';
             $XenditPayment->notes = "This is online payment gateway module for specially indonesian currency. Thanks for using.";
@@ -342,7 +342,7 @@ class CreateInfixModuleManagersTable extends Migration
 
              // AppSlider
              $XenditPayment = 'AppSlider';
-             $XenditPayment = new InfixModuleManager();
+             $XenditPayment = new CpmModuleManager();
              $XenditPayment->name = 'AppSlider';
              $XenditPayment->email = 'support@spondonit.com';
              $XenditPayment->notes = "This is for school affiliate banner for mobile app. Thanks for using.";
@@ -355,7 +355,7 @@ class CreateInfixModuleManagersTable extends Migration
              $XenditPayment->save();
 
              //KhaltiPayment
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = "KhaltiPayment";
             $s->email = 'support@spondonit.com';
             $s->notes = "Khalti Is A Online Payment Gatway Module For Collect Fees Online";
@@ -368,7 +368,7 @@ class CreateInfixModuleManagersTable extends Migration
             $s->save();
 
             //Raudhahpay
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'Raudhahpay';
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Saas module for Online Payment. Thanks for using.";
@@ -390,7 +390,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -412,7 +412,7 @@ class CreateInfixModuleManagersTable extends Migration
             $url = $array[$name]['url'][0];
             $notes = $array[$name]['notes'][0];
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = $name;
             $s->email = 'support@spondonit.com';
             $s->notes = $notes;
@@ -425,7 +425,7 @@ class CreateInfixModuleManagersTable extends Migration
             $s->save();
 
 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'ExamPlan';
             $s->email = 'support@spondonit.com';
             $s->notes = "Exam Plan and Seat Plan Module";
@@ -437,34 +437,34 @@ class CreateInfixModuleManagersTable extends Migration
             $s->activated_date = date('Y-m-d');
             $s->save();
 
-            //InfixBiometrics 
-            $s = new InfixModuleManager();
-            $s->name = "InfixBiometrics";
+            //CpmBiometrics 
+            $s = new CpmModuleManager();
+            $s->name = "CpmBiometrics";
             $s->email = 'support@spondonit.com';
-            $s->notes = "This is InfixBiometrics module for live virtual class and meeting in this system at a time. Thanks for using.";
+            $s->notes = "This is CpmBiometrics module for live virtual class and meeting in this system at a time. Thanks for using.";
             $s->version = "1.0";
             $s->update_url = "https://spondonit.com/contact";
             $s->is_default = 0;
-            $s->addon_url = "https://codecanyon.net/item/infixedu-zoom-live-class/27623128?s_rank=12";
+            $s->addon_url = "https://codecanyon.net/item/cpmedu-zoom-live-class/27623128?s_rank=12";
             $s->installed_domain = url('/');
             $s->activated_date = date('Y-m-d');
             $s->save();
 
              //Gmeet 
-             $s = new InfixModuleManager();
+             $s = new CpmModuleManager();
              $s->name = "Gmeet";
              $s->email = 'support@spondonit.com';
              $s->notes = "This is Gmeet module for live virtual class and meeting in this system at a time. Thanks for using.";
              $s->version = "1.0";
              $s->update_url = "https://spondonit.com/contact";
              $s->is_default = 0;
-             $s->addon_url = "https://codecanyon.net/item/google-meet-module-for-infixedu-gmeet-live-class/42463761";
+             $s->addon_url = "https://codecanyon.net/item/google-meet-module-for-cpmedu-gmeet-live-class/42463761";
              $s->installed_domain = url('/');
              $s->activated_date = date('Y-m-d');
              $s->save();
 
             //TwoFactorAuth 
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = "TwoFactorAuth";
             $s->email = 'support@spondonit.com';
             $s->notes = "This is TwoFactorAuth module for verfication two factor authentication code using email or text sms. Thanks for using.";
@@ -472,7 +472,7 @@ class CreateInfixModuleManagersTable extends Migration
             $s->update_url = "https://spondonit.com/contact";
             $s->is_default = 1;
             $s->purchase_code = time();
-            $s->addon_url = "https://codecanyon.net/item/google-meet-module-for-infixedu-gmeet-live-class/42463761";
+            $s->addon_url = "https://codecanyon.net/item/google-meet-module-for-cpmedu-gmeet-live-class/42463761";
             $s->installed_domain = url('/');
             $s->activated_date = date('Y-m-d');
             $s->save();
@@ -480,7 +480,7 @@ class CreateInfixModuleManagersTable extends Migration
 
             //Lms
             $name = 'Lms';
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
             $s->name = 'Lms';
             $s->email = 'support@spondonit.com';
             $s->notes = "This is Lms module for learning management. Teacher & Admin Can create course and student & parent can enroll using online & offline payment gateway . Thanks for using.";
@@ -505,6 +505,6 @@ class CreateInfixModuleManagersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infix_module_managers');
+        Schema::dropIfExists('cpm_module_managers');
     }
 }

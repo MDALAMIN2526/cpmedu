@@ -15,7 +15,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use App\Http\Requests\Admin\Hr\staffAttendanceSearchRequest;
 use App\Http\Requests\Admin\Hr\staffAttendanceBulkStoreRequest;
 use App\Http\Requests\Admin\Hr\staffAttendanceReportSearchRequest;
@@ -32,7 +32,7 @@ class SmStaffAttendanceController extends Controller
     {
 
         try {
-            $roles = InfixRole::where('active_status', '=', '1')->whereNotIn('id', [1, 2, 3, 10])->where(function ($q) {
+            $roles = CpmRole::where('active_status', '=', '1')->whereNotIn('id', [1, 2, 3, 10])->where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })
                 ->orderBy('name', 'asc')
@@ -50,7 +50,7 @@ class SmStaffAttendanceController extends Controller
         try {
             $date = $request->attendance_date;
 
-            $roles = InfixRole::where('active_status', '=', '1')->whereNotIn('id', [1, 2, 3, 10])->whereOr(['school_id', Auth::user()->school_id], ['school_id', 1])->get();
+            $roles = CpmRole::where('active_status', '=', '1')->whereNotIn('id', [1, 2, 3, 10])->whereOr(['school_id', Auth::user()->school_id], ['school_id', 1])->get();
             $role_id = $request->role;
             $staffs = SmStaff::with('DateWiseStaffAttendance', 'roles')
             ->where(function($q) use ($request) {
@@ -156,7 +156,7 @@ class SmStaffAttendanceController extends Controller
     public function staffAttendanceReport(Request $request)
     {
         try {
-            $roles = InfixRole::where('active_status', '=', '1')
+            $roles = CpmRole::where('active_status', '=', '1')
                 ->whereNotIn('id', [1, 2, 3, 10])
                 ->whereOr(['school_id', Auth::user()->school_id], ['school_id', 1])
                 ->orderBy('name', 'asc')
@@ -181,7 +181,7 @@ class SmStaffAttendanceController extends Controller
             $current_day = date('d');
             
             $days = cal_days_in_month(CAL_GREGORIAN, $request->month, $request->year);
-            $roles = InfixRole::whereNotIn('id', [1, 2, 3, 10])->where(function ($q) {
+            $roles = CpmRole::whereNotIn('id', [1, 2, 3, 10])->where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
 
@@ -208,12 +208,12 @@ class SmStaffAttendanceController extends Controller
             $current_day = date('d');
 
             $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-            $roles = InfixRole::whereNotIn('id', [1, 2, 3, 10])->where(function ($q) {
+            $roles = CpmRole::whereNotIn('id', [1, 2, 3, 10])->where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
 
             $staffs = SmStaff::where('role_id', $role_id)->where('school_id', Auth::user()->school_id)->get();
-            $role = InfixRole::find($role_id);
+            $role = CpmRole::find($role_id);
 
             $attendances = [];
             foreach ($staffs as $staff) {

@@ -68,10 +68,10 @@ use Illuminate\Support\Facades\Response;
 use App\Scopes\StatusAcademicSchoolScope;
 use Illuminate\Support\Facades\Validator;
 use App\Models\SmStudentRegistrationField;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Modules\Wallet\Entities\WalletTransaction;
-use Modules\OnlineExam\Entities\InfixOnlineExam;
-use Modules\OnlineExam\Entities\InfixStudentTakeOnlineExam;
+use Modules\OnlineExam\Entities\CpmOnlineExam;
+use Modules\OnlineExam\Entities\CpmStudentTakeOnlineExam;
 use App\Http\Requests\Admin\StudentInfo\SmStudentAdmissionRequest;
 
 class SmParentPanelController extends Controller
@@ -712,10 +712,10 @@ class SmParentPanelController extends Controller
 
             // ->where('start_time', '<', $now)
             if (moduleStatusCheck('OnlineExam') == true) {
-                $online_exams = InfixOnlineExam::where('active_status', 1)->where('status', 1)->where('class_id', $student->class_id)->where('section_id', $student->section_id)
+                $online_exams = CpmOnlineExam::where('active_status', 1)->where('status', 1)->where('class_id', $student->class_id)->where('section_id', $student->section_id)
                     ->where('academic_id', getAcademicId())->where('school_id', Auth::user()->school_id)->get();
 
-                $marks_assigned = InfixStudentTakeOnlineExam::whereIn('online_exam_id', $online_exams->pluck('id')->toArray())->where('student_id', $student->id)->where('status', 2)
+                $marks_assigned = CpmStudentTakeOnlineExam::whereIn('online_exam_id', $online_exams->pluck('id')->toArray())->where('student_id', $student->id)->where('status', 2)
                     ->where('school_id', Auth::user()->school_id)->pluck('online_exam_id')->toArray();
             } else {
                 $online_exams = SmOnlineExam::where('active_status', 1)->where('status', 1)->where('class_id', $student->class_id)->where('section_id', $student->section_id)
@@ -736,7 +736,7 @@ class SmParentPanelController extends Controller
 
         try {
             if (moduleStatusCheck('OnlineExam') == true) {
-                $result_views = InfixStudentTakeOnlineExam::
+                $result_views = CpmStudentTakeOnlineExam::
                     where('active_status', 1)->where('status', 2)
                     ->where('academic_id', getAcademicId())
                     ->where('student_id', $id)
@@ -763,7 +763,7 @@ class SmParentPanelController extends Controller
     {
         try {
             if (moduleStatusCheck('OnlineExam') == true) {
-                $take_online_exam = InfixStudentTakeOnlineExam::where('online_exam_id', $exam_id)->where('student_id', $s_id)->where('school_id', Auth::user()->school_id)->first();
+                $take_online_exam = CpmStudentTakeOnlineExam::where('online_exam_id', $exam_id)->where('student_id', $s_id)->where('school_id', Auth::user()->school_id)->first();
             } else {
                 $take_online_exam = SmStudentTakeOnlineExam::where('online_exam_id', $exam_id)->where('student_id', $s_id)->where('school_id', Auth::user()->school_id)->first();
             }
@@ -918,7 +918,7 @@ class SmParentPanelController extends Controller
                 ->where('school_id', Auth::user()->school_id)->get();
             $leave_types = SmLeaveType::where('active_status', 1)->where('academic_id', getAcademicId())->whereOr(['school_id', Auth::user()->school_id],
                 ['school_id', 1])->get();
-            $roles = InfixRole::where('id', 2)->where(function ($q) {
+            $roles = CpmRole::where('id', 2)->where(function ($q) {
                 $q->where('school_id', Auth::user()->school_id)->orWhere('type', 'System');
             })->get();
             $pendingRequest = SmLeaveRequest::where('sm_leave_requests.active_status', 1)

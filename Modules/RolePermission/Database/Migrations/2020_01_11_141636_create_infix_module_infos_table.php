@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Modules\RolePermission\Entities\InfixModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
 
-class CreateInfixModuleInfosTable extends Migration
+class CreateCpmModuleInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateInfixModuleInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('infix_module_infos', function (Blueprint $table) {
+        Schema::create('cpm_module_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('module_id')->nullable();
             $table->string('module_name')->nullable();
@@ -49,6 +49,6 @@ class CreateInfixModuleInfosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infix_module_infos');
+        Schema::dropIfExists('cpm_module_infos');
     }
 }

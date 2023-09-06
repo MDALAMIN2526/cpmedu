@@ -45,7 +45,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-12">
-                         {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => 'due_fees_login_permission', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'id' => 'infix_form']) }}
+                         {{ Form::open(['class' => 'form-horizontal', 'files' => true, 'route' => 'due_fees_login_permission', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'id' => 'cpm_form']) }}
                          <div class="row">
                              <div class="col-lg-12">
                                  <div class="white-box filter_card">

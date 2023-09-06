@@ -29,9 +29,9 @@ use App\SmOnlineExamQuestionMuOption;
 use Illuminate\Support\Facades\Schema;
 use App\OnlineExamStudentAnswerMarking;
 use Illuminate\Support\Facades\Validator;
-use Modules\OnlineExam\Entities\InfixOnlineExam;
+use Modules\OnlineExam\Entities\CpmOnlineExam;
 use App\Http\Requests\Admin\OnlineExam\SmOnlineExamRequest;
-use Modules\OnlineExam\Entities\InfixStudentTakeOnlineExam;
+use Modules\OnlineExam\Entities\CpmStudentTakeOnlineExam;
 use App\Http\Controllers\Admin\StudentInfo\SmStudentReportController;
 
 class SmOnlineExamController extends Controller
@@ -761,7 +761,7 @@ class SmOnlineExamController extends Controller
     {
         try {
             if (moduleStatusCheck('OnlineExam')== TRUE) {
-                $exams = InfixOnlineExam::where('active_status', 1)
+                $exams = CpmOnlineExam::where('active_status', 1)
                         ->where('academic_id', getAcademicId())
                         ->where('school_id', Auth::user()->school_id)
                         ->get();
@@ -794,11 +794,11 @@ class SmOnlineExamController extends Controller
                 return redirect('online-exam-report');
             }
             if (moduleStatusCheck('OnlineExam')== TRUE) {
-                $online_exam_question = InfixOnlineExam::find($request->exam);
-                $online_exam = InfixOnlineExam::where('class_id', $request->class)->where('section_id', $request->section)->where('id', $request->exam)->where('end_date_time', '<', $present_date_time)->where('status', 1)->first();
+                $online_exam_question = CpmOnlineExam::find($request->exam);
+                $online_exam = CpmOnlineExam::where('class_id', $request->class)->where('section_id', $request->section)->where('id', $request->exam)->where('end_date_time', '<', $present_date_time)->where('status', 1)->first();
                 $present_students = [];
                 foreach ($students as $student) {
-                    $take_exam = InfixStudentTakeOnlineExam::where('student_id', $student->id)->where('online_exam_id', $online_exam_question->id)->first();
+                    $take_exam = CpmStudentTakeOnlineExam::where('student_id', $student->id)->where('online_exam_id', $online_exam_question->id)->first();
                     if ($take_exam != "") {
                         $present_students[] = $student->id;
                     }
@@ -807,7 +807,7 @@ class SmOnlineExamController extends Controller
                 foreach ($online_exam_question->assignQuestions as $assignQuestion) {
                     $total_marks = $total_marks + $assignQuestion->questionBank->marks;
                 }
-                $exams = InfixOnlineExam::where('active_status', 1)->where('academic_id', getAcademicId())->where('school_id',Auth::user()->school_id)->get();
+                $exams = CpmOnlineExam::where('active_status', 1)->where('academic_id', getAcademicId())->where('school_id',Auth::user()->school_id)->get();
             } else {
                 $online_exam_question = SmOnlineExam::find($request->exam);
                 $online_exam = SmOnlineExam::where('class_id', $request->class)->where('section_id', $request->section)->where('id', $request->exam)->where('end_date_time', '<', $present_date_time)->where('status', 1)->first();

@@ -1,6 +1,6 @@
 <?php
 
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -424,9 +424,9 @@ return new class extends Migration
         $url = $array[$name]['url'][0];
         $notes = $array[$name]['notes'][0];
 
-        $s = InfixModuleManager::where('name', $name)->first();
+        $s = CpmModuleManager::where('name', $name)->first();
         if(!$s){
-            $s = new InfixModuleManager();
+            $s = new CpmModuleManager();
         }
         $s->name = $name;
         $s->email = 'support@spondonit.com';

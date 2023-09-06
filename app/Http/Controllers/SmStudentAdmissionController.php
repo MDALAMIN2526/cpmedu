@@ -41,7 +41,7 @@ use App\SmGeneralSettings;
 use App\SmStudentCategory;
 use App\SmStudentDocument;
 use App\SmStudentTimeline;
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use App\SmStudentPromotion;
 use App\SmStudentAttendance;
 use App\Traits\CustomFields;
@@ -78,7 +78,7 @@ class SmStudentAdmissionController extends Controller
     private $User;
     private $SmGeneralSettings;
     private $SmUserLog;
-    private $InfixModuleManager;
+    private $CpmModuleManager;
     private $URL;
 
     public function __construct()

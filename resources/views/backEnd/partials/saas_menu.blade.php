@@ -140,13 +140,13 @@
     </li>
     
     <li>
-    <a href="#subMenuInfixInvoice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+    <a href="#subMenuCpmInvoice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span class="flaticon-accounting"></span> Invoice </a>
-    <ul class="collapse list-unstyled" id="subMenuInfixInvoice">
-        <li><a href="{{url('infix/invoice-create')}}">Invoice Create</a></li>
-        <li><a href="{{url('infix/invoice-list')}}">Invoice list</a></li>
-        <li><a href="{{url('infix/invoice-category')}}">Invoice Category</a></li>
-        <li><a href="{{url('infix/invoice-setting')}}">Invoice Setting</a></li>
+    <ul class="collapse list-unstyled" id="subMenuCpmInvoice">
+        <li><a href="{{url('cpm/invoice-create')}}">Invoice Create</a></li>
+        <li><a href="{{url('cpm/invoice-list')}}">Invoice list</a></li>
+        <li><a href="{{url('cpm/invoice-category')}}">Invoice Category</a></li>
+        <li><a href="{{url('cpm/invoice-setting')}}">Invoice Setting</a></li>
     
     </ul>
     </li> --}}
@@ -172,9 +172,9 @@
     </li>
     
     <li>
-    <a href="#subMenuInfixInvoice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+    <a href="#subMenuCpmInvoice" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span class="flaticon-accounting"></span> Reports </a>
-    <ul class="collapse list-unstyled" id="subMenuInfixInvoice">
+    <ul class="collapse list-unstyled" id="subMenuCpmInvoice">
         <li><a href="{{route('administrator/student-list')}}">@lang('common.student_list')</a></li>
         <li><a href="{{route('administrator/income-expense')}}">@lang('accounts.date_to')/@lang('accounts.expense')</a></li>
         <li><a href="{{route('administrator/teacher-list')}}">@lang('hr.teacher_list')</a></li>

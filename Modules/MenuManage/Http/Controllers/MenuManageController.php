@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Cache;
 use Modules\MenuManage\Entities\Sidebar;
 use Modules\MenuManage\Entities\SidebarNew;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\RolePermission\Entities\InfixRole;
+use Modules\RolePermission\Entities\CpmRole;
 use Modules\RolePermission\Entities\Permission;
 use Modules\MenuManage\Entities\PermissionSection;
-use Modules\RolePermission\Entities\InfixModuleInfo;
+use Modules\RolePermission\Entities\CpmModuleInfo;
 use Modules\RolePermission\Entities\AssignPermission;
-use Modules\RolePermission\Entities\InfixPermissionAssign;
-use Modules\RolePermission\Entities\InfixModuleStudentParentInfo;
+use Modules\RolePermission\Entities\CpmPermissionAssign;
+use Modules\RolePermission\Entities\CpmModuleStudentParentInfo;
 
 class MenuManageController extends Controller
 {
@@ -48,21 +48,21 @@ class MenuManageController extends Controller
             foreach ($request->all_modules_id as $key => $id) {
                 $status = in_array($id, $checked_ids) ? 1 : 0;
                 $sidebar = new SidebarNew;
-                $sidebar->infix_module_id = $id;
+                $sidebar->cpm_module_id = $id;
                 if ($user->role_id == 2 || $user->role_id == 3) {
-                    $student_p = InfixModuleStudentParentInfo::find($id);
+                    $student_p = CpmModuleStudentParentInfo::find($id);
                     $sidebar->module_id = $student_p ? $student_p->module_id : ' ';
                     $sidebar->route = $student_p ? $student_p->route : ' ';
                     $sidebar->name = $student_p ? $student_p->name : ' ';
                     $sidebar->parent_id = $student_p ? $student_p->parent_id : ' ';
                     $sidebar->type = $student_p ? $student_p->type : ' ';
                 } else {
-                    $infix_module = InfixModuleInfo::find($id);
-                    $sidebar->module_id = $infix_module ? $infix_module->module_id : ' ';
-                    $sidebar->route = $infix_module ? $infix_module->route : ' ';
-                    $sidebar->name = $infix_module ? $infix_module->name : ' ';
-                    $sidebar->parent_id = $infix_module ? $infix_module->parent_id : ' ';
-                    $sidebar->type = $infix_module ? $infix_module->type : ' ';
+                    $cpm_module = CpmModuleInfo::find($id);
+                    $sidebar->module_id = $cpm_module ? $cpm_module->module_id : ' ';
+                    $sidebar->route = $cpm_module ? $cpm_module->route : ' ';
+                    $sidebar->name = $cpm_module ? $cpm_module->name : ' ';
+                    $sidebar->parent_id = $cpm_module ? $cpm_module->parent_id : ' ';
+                    $sidebar->type = $cpm_module ? $cpm_module->type : ' ';
                 }
                 $sidebar->role_id = auth()->user()->role_id;
                 $sidebar->user_id = auth()->user()->id;
@@ -89,8 +89,8 @@ class MenuManageController extends Controller
     {
 
         $id = Auth::user()->role_id;
-        $role = InfixRole::where('is_saas', 0)->where('id', $id)->first();
-        $all_modules = InfixModuleInfo::where('is_saas', 0)->where('active_status', 1)->get();
+        $role = CpmRole::where('is_saas', 0)->where('id', $id)->first();
+        $all_modules = CpmModuleInfo::where('is_saas', 0)->where('active_status', 1)->get();
         $all_modules = $all_modules->groupBy('module_id');
         $all_sidebars = SidebarNew::where('is_saas', 0)->distinct('module_id')->get();
         return view('menumanage::all_sidebar_menu', compact('role', 'all_modules', 'all_sidebars'));

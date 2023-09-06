@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\InfixModuleManager;
+use App\CpmModuleManager;
 use App\Scopes\ActiveStatusSchoolScope;
 use App\SmAcademicYear;
 use App\SmBackgroundSetting;
@@ -241,7 +241,7 @@ class LoginController extends Controller
             // System academic session id in session
 
             $all_modules = [];
-            $modules = InfixModuleManager::select('name')->get();
+            $modules = CpmModuleManager::select('name')->get();
             foreach ($modules as $module) {
                 $all_modules[] = $module->name;
             }

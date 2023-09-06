@@ -149,7 +149,7 @@
                                     @if(in_array($student->id, $present_students))
                                         @php
                                         if (moduleStatusCheck('OnlineExam')== TRUE) {
-                                            $obtained_marks = Modules\OnlineExam\Entities\InfixOnlineExam::obtainedMarks($online_exam_question->id, $student->id);
+                                            $obtained_marks = Modules\OnlineExam\Entities\CpmOnlineExam::obtainedMarks($online_exam_question->id, $student->id);
                                         } else {
                                             $obtained_marks = App\SmOnlineExam::obtainedMarks($online_exam_question->id, $student->id);
                                         }
